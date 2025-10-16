@@ -13,9 +13,11 @@ function writeUsers(users: any) {
   fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
 }
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+type Context = { params: { id: string } };
+
+export async function GET(req: NextRequest, context: Context) {
   const users = readUsers();
-  const user = users.find((u: any) => u.id === Number(params.id));
+  const user = users.find((u: any) => u.id === Number(context.params.id));
 
   if (!user) {
     return new Response(JSON.stringify({ message: 'User not found' }), {
