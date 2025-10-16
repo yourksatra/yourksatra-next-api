@@ -1,19 +1,15 @@
 import fs from 'fs';
 import path from 'path';
+import { getUsers, addUser, updateUsers } from './dataStore';
 
 export const dynamic = 'force-dynamic';
 
 const filePath = path.join(process.cwd(), 'src', 'data', 'users.json');
 const isProduction = process.env.VERCEL === '1';
 
-let memoryUsers = [
-    { id: 1, name: 'Bagas', email: 'bagas@example.com' },
-    { id: 2, name: 'Test', email: 'test@example.com' },
-];
-
 function readUsers() {
     if (isProduction) {
-        return memoryUsers;
+        return getUsers();
     } else {
         const data = fs.readFileSync(filePath, 'utf8');
         return JSON.parse(data);
@@ -22,7 +18,7 @@ function readUsers() {
 
 function writeUsers(users) {
     if (isProduction) {
-        memoryUsers = users;
+        updateUsers(users);
     } else {
         fs.writeFileSync(filePath, JSON.stringify(users, null, 2), 'utf8');
     }
