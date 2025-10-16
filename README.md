@@ -65,14 +65,15 @@ Tampilan utama berisi tabel daftar user dengan tombol:
 📍 **Endpoint utama API:**  
 👉 [https://yourksatra-next-api.vercel.app/api/users](https://yourksatra-next-api.vercel.app/api/users)
 
-| Method        | Browser Langsung (URL)                           | Postman / Fetch / Curl | Status di Vercel | Deskripsi                                                   |
-|---------------|---------------------------------------------------|-------------------------|------------------|--------------------------------------------------------------|
-| `GET`         | ✅ Bisa (`/api/users`)                             | ✅ Bisa                 | ✅ Aktif         | Mengambil semua data user                                    |
-| `GET (id)`    | ✅ Bisa (`/api/users/1`)                           | ✅ Bisa                 | ✅ Aktif         | Mengambil data user berdasarkan `id`                         |
-| `POST`        | ❌ Tidak bisa via browser                          | ✅ Bisa                 | ✅ Aktif         | Menambah user baru                                           |
-| `PUT`         | ❌ Tidak bisa via browser                          | ✅ Bisa                 | ✅ Aktif         | Memperbarui data user berdasarkan `id`                       |
-| `DELETE`      | ❌ Tidak bisa via browser                          | ✅ Bisa                 | ✅ Aktif         | Menghapus user berdasarkan `id`                              |
+| Method        | Browser (URL)                           | Postman / Fetch / Curl | Halaman Utama (UI)       | Status di Vercel | Deskripsi                                                                 |
+|---------------|---------------------------------------------------|-------------------------|---------------------------|------------------|----------------------------------------------------------------------------|
+| `GET`         | ✅ Bisa (`/api/users`)                             | ✅ Bisa                 | ✅ Menampilkan tabel      | ✅ Aktif         | Mengambil semua data user dari in-memory storage atau file lokal.         |
+| `GET (id)`    | ✅ Bisa (`/api/users/1`)                           | ✅ Bisa                 | ✅ (Saat edit / delete)   | ✅ Aktif         | Mengambil data user berdasarkan `id`.                                    |
+| `POST`        | ❌ Tidak bisa via browser                          | ✅ Bisa                 | ✅ Tambah data            | ✅ Aktif         | Menambah user baru dengan ID **auto-increment**.                          |
+| `PUT`         | ❌ Tidak bisa via browser                          | ✅ Bisa                 | ✅ Edit data              | ✅ Aktif         | Memperbarui data user berdasarkan `id` (selama ID masih ada di memori).   |
+| `DELETE`      | ❌ Tidak bisa via browser                          | ✅ Bisa                 | ✅ Hapus data             | ✅ Aktif         | Menghapus user berdasarkan `id` dari in-memory storage.                   |
 
+ 
 ---
 
 ### 📬 Contoh Request via Postman
@@ -128,13 +129,6 @@ Tampilan utama berisi tabel daftar user dengan tombol:
 ```
 src/data/users.json
 ```
-
-📡 Untuk penyimpanan data **permanen**, disarankan integrasi database eksternal seperti:
-
-* Supabase
-* PlanetScale
-* MongoDB Atlas
-
 ---
 
 #### 🧭 Tips Tambahan
