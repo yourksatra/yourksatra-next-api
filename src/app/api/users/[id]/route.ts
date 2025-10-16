@@ -13,11 +13,12 @@ function writeUsers(users: any) {
   fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
 }
 
-type Context = { params: { id: string } };
-
-export async function GET(req: NextRequest, context: Context) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const users = readUsers();
-  const user = users.find((u: any) => u.id === Number(context.params.id));
+  const user = users.find((u: any) => u.id === Number(params.id));
 
   if (!user) {
     return new Response(JSON.stringify({ message: 'User not found' }), {
@@ -32,7 +33,10 @@ export async function GET(req: NextRequest, context: Context) {
   });
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const users = readUsers();
   const id = Number(params.id);
   const index = users.findIndex((u: any) => u.id === id);
@@ -45,7 +49,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   }
 
   const body = await req.json();
-  
+
   if (body.email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(body.email)) {
@@ -68,7 +72,10 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   });
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const users = readUsers();
   const id = Number(params.id);
   const index = users.findIndex((u: any) => u.id === id);
@@ -83,8 +90,11 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   users.splice(index, 1);
   writeUsers(users);
 
-  return new Response(JSON.stringify({ message: 'User deleted successfully' }), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return new Response(
+    JSON.stringify({ message: 'User deleted successfully' }),
+    {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    }
+  );
 }
