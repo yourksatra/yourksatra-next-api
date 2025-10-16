@@ -30,7 +30,7 @@ function writeUsers(users: any) {
 }
 
 export async function GET(req: NextRequest, context: any) {
-  const { id } = context.params;
+  const { id } = await context.params;
   const users = readUsers();
   const user = users.find((u: any) => u.id === Number(id));
 
@@ -48,7 +48,7 @@ export async function GET(req: NextRequest, context: any) {
 }
 
 export async function PUT(req: NextRequest, context: any) {
-  const { id } = context.params;
+  const { id } = await context.params;
   const users = readUsers();
   const index = users.findIndex((u: any) => u.id === Number(id));
 
@@ -81,7 +81,7 @@ export async function PUT(req: NextRequest, context: any) {
 }
 
 export async function DELETE(req: NextRequest, context: any) {
-  const { id } = context.params;
+  const { id } = await context.params;
   const users = readUsers();
   const index = users.findIndex((u: any) => u.id === Number(id));
 
