@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const filePath = path.join(process.cwd(), 'src', 'app', 'data', 'users.json');
+const filePath = path.join(process.cwd(), 'src', 'data', 'users.json');
 
 function readUsers() {
     const data = fs.readFileSync(filePath, 'utf8');

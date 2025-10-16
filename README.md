@@ -1,4 +1,4 @@
-# 🚀 Simple REST API with Next.js + MUI
+# Simple REST API with Next.js + MUI
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
@@ -18,8 +18,8 @@ Semua data disimpan secara **lokal di file `users.json`**, sehingga **tidak ters
 ## 🧭 Table of Contents
 
 - [Deskripsi](#-deskripsi)
-- [Fitur](#-fitur)
-- [Overview](#-overview)
+- [✨ Fitur](#-fitur)
+- [🖼️ Overview](#-overview)
 - [⚠️ Warning](#️-warning)
 - [🧰 Prerequisites](#-prerequisites)
 - [⚙️ Installation](#️-installation)
